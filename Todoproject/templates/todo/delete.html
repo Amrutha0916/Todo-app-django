@@ -1,0 +1,30 @@
+{% extends "partials/base.html" %}
+{% block title%} Todo App {% endblock%}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .form-group{
+        margin-bottom: 15px;
+    }
+    .btn-block {
+        display: block;
+        width: 100%;
+        margin: auto;
+        
+    }
+</style>
+<div class="border p-3 ">
+    <h4>Delete Task</h4>
+    <hr>
+    <div class="alert alert-danger">
+        <p>Are you sureyou want to delete</p>
+    </div>
+    <form method="Post">
+        {%csrf_token%}
+        <a class="btn btn-secondary" href="{%url 'todo-index' %}">Cancel</a>
+        <input class="btn btn-danger" type="submit" value="Confirm">
+    </form>
+</div>
+
+{% endblock %}
+

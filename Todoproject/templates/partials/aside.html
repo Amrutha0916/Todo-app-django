@@ -1,0 +1,32 @@
+<style>
+    #aside{
+        background-color: rgb(204, 190, 190);
+        border-radius: 15px;
+        margin:3rem auto ;
+        backdrop-filter: blur(70px);
+        position: relative;
+        background: transparent;
+    }
+    .Statistics{
+        display:flex;
+        color:#4B0082;
+        justify-content:center;
+        text-aign:center;
+    }
+</style>    
+<div class="border p-3 " id="aside">
+    <h3 class="Statistics">Statistics</h3>
+    <hr>
+    <div class="border p-3 mb-2">
+        <h3 style=color:#0600BD>Total</h3>
+        <h4 class="text-center" style=color:#66235E >{{count_todos}}</h4>
+    </div>
+    <div class="border p-3 mb-2">
+        <h3 style=color:#0600BD>Completed</h3>
+        <h4 class="text-center" style=color:#0F6B00>{{count_completed_todo}}</h4>
+    </div>
+    <div class="border p-3 mb-2">
+        <h3 style=color:#0600BD>Uncompleted</h3>
+        <h4 class="text-center" style=color:red>{{count_uncompleted_todo}}</h4>
+    </div>    
+</div>

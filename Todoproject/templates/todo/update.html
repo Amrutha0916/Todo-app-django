@@ -1,0 +1,25 @@
+{% extends "partials/base.html" %}
+{% block title%} Todo App {% endblock%}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .form-group{
+        margin-bottom: 15px;
+    }
+    .btn-block {
+        display: block;
+        width: 100%;
+        margin: auto;
+        
+    }
+</style>
+<div class="border p-3 ">
+    <form method="POST">
+        {% csrf_token %}
+        {{form|crispy }}
+        <input class="btn btn-info btn-block" type="submit" value="update">
+    </form>
+</div>
+
+{% endblock %}
+

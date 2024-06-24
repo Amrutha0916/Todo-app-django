@@ -1,0 +1,97 @@
+{% extends "partials/base.html" %}
+{% block title %} Todo App {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .btn-block {
+        display: block;
+        width: 100%;
+        margin: auto; 
+    }
+    .completed-task {
+        padding: 15px;
+        text-decoration: line-through;
+        font-size: 23px;
+        color: #0dd52f;
+        margin-bottom: 15px;
+        font-style: italic;
+    }
+    .task-content {
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+    #todoform{
+    background-color: rgb(204, 190, 190);
+    border-radius: 15px;
+    margin:3rem auto ;
+    backdrop-filter: blur(70px);
+    position: relative;
+    background: transparent;
+    }
+    @media (max-width: 991.98px) {
+        .task-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .completed-task {
+            font-size: 18px;
+        }
+        .task-content {
+            font-size: 20px;
+        }
+        #todolist {
+            margin: 1rem auto;
+            padding: 0.5rem;
+            width: 250%; 
+        }
+    }
+    @media (max-width: 575.98px) {
+        .completed-task {
+            font-size: 15px;
+        }
+        .task-content {
+            font-size: 18px;
+        }
+        #todolist {
+            margin: 0.5rem auto;
+            padding: 0.5rem;
+            width: 200%; 
+        }
+    }
+</style>
+<div class="border p-3 mb-2 "id="todolist">
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-success btn-block" type="submit" value="Submit">
+    </form>
+    <hr>
+    {% for todo in todos %}
+    <div class="border p-3 mb-2" id="todoform">
+        <small>{{ todo.date }}</small>
+        <div class="row">
+            <div class="col-md-8">
+                <p class="{% if todo.complete %}completed-task{% else %}task-content{% endif %}">
+                    {% if todo.complete %}
+                        <span class="btn btn-success btn-sm">
+                            <i class="far fa-check-circle"></i>
+                        </span>
+                    {% endif %}
+                    {{ todo.content }}
+                </p>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-info btn-sm" href="{% url 'todo-update' todo.id %}">Edit</a>
+                <a class="btn btn-danger btn-sm" href="{% url 'todo-delete' todo.id %}">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
